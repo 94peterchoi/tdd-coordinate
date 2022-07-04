@@ -11,9 +11,13 @@ public class PointerApp {
 
         for (int i = 1; i <= 9; i++) {
             System.out.printf("%2d |", i);
-            for (int j = 1; j <= 9; j++)
-                System.out.printf("%3s", "·");
-            System.out.println();
+            for (int j = 1; j <= 9; j++) {
+                if ((i == 1 && j == 3) || (i == 4 && j ==9)) {
+                    System.out.printf("%3s", "·");
+                } else {
+                    System.out.printf("%3s", "");
+                }
+            }
         }
 
     }
