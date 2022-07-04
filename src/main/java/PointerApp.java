@@ -9,10 +9,10 @@ public class PointerApp {
 
         System.out.println("\n---+---------------------------");
 
-        for (int i = 1; i <= 9; i++) {
-            System.out.printf("%2d |", i);
-            for (int j = 1; j <= 9; j++) {
-                if ((i == 1 && j == 3) || (i == 4 && j ==9)) {
+        for (int x = 1; x <= 9; x++) {
+            System.out.printf("%2d |", x);
+            for (int y = 1; y <= 9; y++) {
+                if ((x == 1 && y == 3) || (x == 4 && y ==9)) {
                     System.out.printf("%3s", "·");
                 } else {
                     System.out.printf("%3s", "");
