@@ -5,7 +5,11 @@ public class Coordinate {
 
     List<Pointer> pointers = new ArrayList<>();
 
-    public void makeTwoPointers(String twoNums) {
+    public void addTwoPointers(String twoNums) {
+        if (pointers.size() > 1) {
+            throw new IllegalStateException("이미 저장된 좌표가 존재합니다.");
+        }
+
         String[] pointerArr = twoNums.split("-");
         Pointer pointer1 = makePointer(pointerArr[0]);
         Pointer pointer2 = makePointer(pointerArr[1]);
@@ -22,6 +26,19 @@ public class Coordinate {
         int y = Util.strToInt(numArr[1]);
 
         return new Pointer(x, y);
+    }
+
+    public double getDistanceBetweenTwoPointers() {
+        Pointer p1 = pointers.get(0);
+        Pointer p2 = pointers.get(1);
+
+        int[] posDiffs = p1.subtract(p2);
+
+        return Math.sqrt(Math.pow(posDiffs[0], 2) + Math.pow(posDiffs[1], 2));
+    }
+
+    public boolean isPositionRightPlace(int x, int y) {
+        return pointers.stream().anyMatch((pointer) -> {return pointer.equals(new Pointer(x, y));});
     }
 
     @Override

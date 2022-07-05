@@ -2,6 +2,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 
@@ -30,14 +33,74 @@ public class CoordinateTest {
 
 
     @Test
-    @DisplayName("입력받은 문자열로 좌표 2개를 만든다")
+    @DisplayName("입력받은 문자열을 가지고 좌표 2개를 만든다")
     void getTwoCoordinates() {
         String twoNums = "(10,10)-(1,4)";
 
         Coordinate coordinate = new Coordinate();
-        coordinate.makeTwoPointers(twoNums);
+        coordinate.addTwoPointers(twoNums);
         assertThat(coordinate.toString()).isEqualTo("x:10, y:10 / x:1, y:4");
 
+        twoNums = "(5,6)-(7,8)";
+
+        Coordinate coordinate2 = new Coordinate();
+        coordinate2.addTwoPointers(twoNums);
+        assertThat(coordinate2.toString()).isEqualTo("x:5, y:6 / x:7, y:8");
     }
+
+
+    @Test
+    @DisplayName("두 좌표 사이의 거리를 구한다")
+    void getDistanceBetweenTwoPointers() {
+        String twoNums = "(3,4)-(3,4)";
+        Coordinate coordinate = new Coordinate();
+        coordinate.addTwoPointers(twoNums);
+        double distance = coordinate.getDistanceBetweenTwoPointers();
+
+        assertThat(distance).isEqualTo(0, offset(0.09));
+
+
+        twoNums = "(10,10)-(14,15)";
+        Coordinate coordinate2 = new Coordinate();
+        coordinate2.addTwoPointers(twoNums);
+        distance = coordinate2.getDistanceBetweenTwoPointers();
+
+        assertThat(distance).isEqualTo(6.403124, offset(0.09));
+    }
+
+    @Test
+    @DisplayName("좌표 출력 테스트")
+    void printPointers() {
+
+        List<Pointer> pointers = new ArrayList<>();
+//        pointers.add(new Pointer(1, 1));
+//        pointers.add(new Pointer(1, 1));
+//        pointers.add(new Pointer(3, 4));
+//        pointers.add(new Pointer(5, 7));
+//        pointers.add(new Pointer(9, 9));
+//        pointers.add(new Pointer(17, 20));
+
+        String twoNums = "(10,10)-(14,15)";
+        Coordinate coordinate = new Coordinate();
+        coordinate.addTwoPointers(twoNums);
+
+        ResultView.printPointers(coordinate);
+        System.out.println(coordinate.getDistanceBetweenTwoPointers());
+
+        System.out.println();
+        System.out.println();
+
+        twoNums = "(1,1)-(17,20)";
+        Coordinate coordinate2 = new Coordinate();
+        coordinate2.addTwoPointers(twoNums);
+
+        ResultView.printPointers(coordinate2);
+        System.out.println(coordinate2.getDistanceBetweenTwoPointers());
+
+
+    }
+
+
+
 
 }

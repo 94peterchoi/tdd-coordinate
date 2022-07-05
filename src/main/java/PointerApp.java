@@ -18,6 +18,7 @@ public class PointerApp {
                     System.out.printf("%3s", "");
                 }
             }
+            System.out.println();
         }
 
     }
